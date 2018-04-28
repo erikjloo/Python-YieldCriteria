@@ -101,6 +101,10 @@ def format_pi_plot(ax,radius,**kwargs):
 #=================================================================
 
 def plot_Mises_Tresca(ax,sig,fy):
+    """ Plots Von Mises and Tresca on the pi-plane
+        Input: sig = a stress vector (plots a point)
+               fy = yield stress """
+    
     # Tresca yield criterion
     t1 = np.array([fy,fy,0,0,0,fy,fy])
     t2 = np.array([0,fy,fy,fy,0,0,0])
@@ -138,6 +142,11 @@ def plot_Mises_Tresca(ax,sig,fy):
 #=================================================================
 
 def plot_DruckerPrager(ax,c,phi,fy):
+    """ Plots Drucker Prager on 3D
+        Input: c = coefficient of ??
+               phi = angle of ??
+               fy = radius of the pi-plane """
+    
     # Cone (Drucker-Prager)
     MaxTensileStress = c*np.cos(phi)/np.sin(phi)
     th = np.linspace(0,2*np.pi,30)
@@ -177,6 +186,8 @@ def plot_DruckerPrager(ax,c,phi,fy):
 #=================================================================
 
 def plot_VonMises(ax,fy):
+    """ Plots Von Mises on 3D
+        Input: fy = yield stress """
     
     # Cylinder (Von-Mises)
     th = np.linspace(0,2*np.pi,30)
@@ -237,6 +248,7 @@ def plot_MohrCoulomb (ax,sig,phi,c):
     s1 = np.zeros((7,3))
     s0 = np.zeros((6,3))
     ds = np.zeros((6,3))
+    
     # Solve for 6 intersection lines in Pi-plane
     for i in range(6):
 
